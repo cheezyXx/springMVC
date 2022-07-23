@@ -2,8 +2,10 @@ package com.example.springmvc2.entities;
 
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +22,13 @@ public class User {
     @Column(name = "user_id")
     private UUID id;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+    @Column(name = "active")
+    private boolean active;
+
     @Column(name = "email", unique = true)
     private String email;
 
@@ -33,6 +42,14 @@ public class User {
     private String lastName;
 
     public User() {
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public User(String email, String password, String firstName, String lastName) {
@@ -52,6 +69,14 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public void setEmail(String email) {
