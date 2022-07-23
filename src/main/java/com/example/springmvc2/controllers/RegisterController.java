@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
+
 @Controller
 public class RegisterController {
 
@@ -22,9 +24,9 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String registerUser(
-            @ModelAttribute("registerForm") RegisterForm registerForm,
+            @Valid @ModelAttribute("registerForm") RegisterForm registerForm,
             BindingResult bindingResult
-        ) {
+    ) {
         if (bindingResult.hasErrors()) {
             return "pages/register";
         }

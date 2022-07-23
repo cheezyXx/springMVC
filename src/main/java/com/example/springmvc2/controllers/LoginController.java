@@ -25,7 +25,7 @@ public class LoginController {
     public String login(
             @ModelAttribute("loginForm") LoginForm loginForm,
             BindingResult bindingResult
-        ) {
+    ) {
         if (bindingResult.hasErrors()) {
             return "pages/login";
         }

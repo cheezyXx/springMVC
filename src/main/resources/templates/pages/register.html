@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="layouts/unauthorized :: layout(~{::title}, ~{::section})">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      th:replace="layouts/unauthorized :: layout(~{::title}, ~{::section})">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,23 +13,24 @@
     <form method="post" th:action="@{/register}" th:object="${registerForm}">
         <div class="mb-3">
             <label for="firstName" class="form-label">First name:</label>
-            <input id="firstName" type="text" class="form-control" />
+            <input id="firstName" type="text" class="form-control" th:field="*{firstName}" />
         </div>
         <div class="mb-3">
             <label for="lastName" class="form-label">Last name:</label>
-            <input type="text" class="form-control" id="lastName">
-        </div>s
+            <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+        </div>
+
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email">
+            <input type="email" class="form-control" id="email" th:field="*{email}">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" id="password" th:field="*{password}">
         </div>
         <div class="mb-3">
             <label for="passwordConfirm" class="form-label">Confirm password</label>
-            <input type="password" class="form-control" id="passwordConfirm">
+            <input type="password" class="form-control" id="passwordConfirm" th:field="*{passwordConfirm}">
         </div>
 
         <div class="d-grid mb-3">

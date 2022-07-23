@@ -7,11 +7,11 @@ import javax.validation.constraints.Size;
 public class RegisterForm {
 
     @NotEmpty
-    @Size(min=2, max=50)
+    @Size(min = 2, max = 50)
     private String firstName;
 
     @NotEmpty
-    @Size(min=2, max=50)
+    @Size(min = 2, max = 50)
     private String lastName;
 
     @NotEmpty
@@ -19,11 +19,11 @@ public class RegisterForm {
     private String email;
 
     @NotEmpty
-    @Size(min=8, max=100)
+    @Size(min = 8, max = 100)
     private String password;
 
     @NotEmpty
-    @Size(min=8, max=100)
+    @Size(min = 8, max = 100)
     private String passwordConfirm;
 
     public RegisterForm() {
