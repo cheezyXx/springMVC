@@ -10,7 +10,7 @@
 <section>
     <h1>Register</h1>
 
-    <form method="post" th:action="@{/login}" th:object="${registerForm}">
+    <form method="post" th:action="@{/register}" th:object="${registerForm}">
         <div class="mb-3">
             <label for="firstName" class="form-label">First name:</label>
             <input id="firstName" type="text" class="form-control" th:field="*{firstName}" />

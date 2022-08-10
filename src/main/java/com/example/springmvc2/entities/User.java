@@ -71,7 +71,7 @@ public class User {
         return email;
     }
 
-    public boolean isActive() {
+    public boolean getActive() {
         return active;
     }
 
