@@ -9,8 +9,10 @@ import com.example.springmvc2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -21,12 +23,12 @@ public class UserService  {
 
     private final RoleRepository roleRepository;
 
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserService(
             UserRepository userRepository,
-            BCryptPasswordEncoder passwordEncoder,
+            PasswordEncoder passwordEncoder,
             RoleRepository roleRepository
     ) {
         this.userRepository = userRepository;
@@ -34,13 +36,14 @@ public class UserService  {
         this.roleRepository = roleRepository;
     }
 
+    @Transactional
     public void create(RegisterForm userForm) {
         User user = new User();
         user.setEmail(userForm.getEmail());
         user.setActive(true);
         user.setFirstName(userForm.getFirstName());
         user.setLastName(userForm.getLastName());
-        user.setPassword(passwordEncoder.encode(userForm.getLastName()));
+        user.setPassword(passwordEncoder.encode(userForm.getPassword()));
 
         Role userRole = roleRepository.findByRole("USER_BASIC");
         user.setRoles(new HashSet<Role>(Collections.singletonList(userRole)));
